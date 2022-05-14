@@ -123,6 +123,8 @@ function ProjectListItem({
   demo,
 }: Props): ReactElement {
   const [isHovering, setIsHovering] = useState(false);
+  const [scrollMagicScene, setScrollMagicScene] =
+    useState<ScrollMagic.Scene | null>(null);
 
   const isMobile = useMediaQuery({ query: `(max-width: 680px)` });
   const videoRef = useRef<HTMLVideoElement>();
@@ -138,24 +140,37 @@ function ProjectListItem({
     setIsHovering(false);
   };
 
+  const enterCallback = () => {
+    if (isMobile) {
+      playVideo();
+    }
+  };
+
+  const leaveCallback = () => {
+    if (isMobile) {
+      pauseVideo();
+    }
+  };
+
   useEffect(() => {
-    console.log('what is videoref: ', videoRef);
+    if (!scrollMagicScene) return;
+
+    if (isMobile) {
+      scrollMagicScene.addTo(controller);
+    } else {
+      scrollMagicScene.remove();
+    }
+  }, [isMobile, scrollMagicScene]);
+
+  useEffect(() => {
     const scene = new ScrollMagic.Scene({
       triggerElement: videoRef.current,
       duration: 500,
     })
-      .on('enter', () => {
-        if (isMobile) {
-          playVideo();
-        }
-      })
-      .on('leave', () => {
-        if (isMobile) {
-          pauseVideo();
-        }
-      })
-      .addTo(controller);
-  }, [isMobile]);
+      .on('enter', playVideo)
+      .on('leave', pauseVideo);
+    setScrollMagicScene(scene);
+  }, []);
 
   return (
     <ProjectListItemContainer>

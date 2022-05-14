@@ -30,7 +30,7 @@ const project1: Project = {
 };
 
 const project2: Project = {
-  name: 'Group Foodie',
+  name: 'Group Foodiers',
   description: `Mobile app experience built around the idea of starting and sharing a group food order among friends or coworkers, with the ability to start an order, chat about the order, and add onto an existing order with a persistent timer that ultimately "submits" the order. I architected and created the entire API and back-end for the project.`,
   technologies: [
     'React/Redux',

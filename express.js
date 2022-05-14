@@ -8,12 +8,12 @@ const portNumber = process.env.PORT || 3000;
 const sourceDir = 'dist';
 
 // redirects http to https to force SSL
-app.use(function (req, res, next) {
-  if (!req.secure) {
-    return res.redirect(['https://', req.get('Host'), req.baseUrl].join(''));
-  }
-  next();
-});
+// app.use(function (req, res, next) {
+//   if (!req.secure) {
+//     return res.redirect(['https://', req.get('Host'), req.baseUrl].join(''));
+//   }
+//   next();
+// });
 app.use(express.json());
 app.use(express.static(sourceDir));
 
@@ -28,27 +28,26 @@ const transporter = nodemailer.createTransport({
 });
 
 // certificates
-const privateKey = fs.readFileSync(process.env.private_key, 'utf8');
-const certificate = fs.readFileSync(process.env.certificate, 'utf8');
-const ca = fs.readFileSync(process.env.ca, 'utf8');
+// const privateKey = fs.readFileSync(process.env.private_key, 'utf8');
+// const certificate = fs.readFileSync(process.env.certificate, 'utf8');
+// const ca = fs.readFileSync(process.env.ca, 'utf8');
 
-const credentials = {
-  key: privateKey,
-  cert: certificate,
-  ca: ca,
-};
+// const credentials = {
+//   key: privateKey,
+//   cert: certificate,
+//   ca: ca,
+// };
 
 // https cert challenge. Will create auto renew so this is temporary
-app.get(
-  '/.well-known/acme-challenge/t8sG7xg144Bu9JdQFIliePpaqFbnTQcGtGtB9TKpbcg',
-  (req, res) => {
-    res
-      .status(200)
-      .send(
-        't8sG7xg144Bu9JdQFIliePpaqFbnTQcGtGtB9TKpbcg.DrZwa_GpNdahhRomHmhzkbl35RCjX9oIpoXq3o0zk',
-      );
-  },
-);
+// app.get( '/.well-known/acme-challenge/t8sG7xg144Bu9JdQFIliePpaqFbnTQcGtGtB9TKpbcg',
+//   (req, res) => {
+//     res
+//       .status(200)
+//       .send(
+//         't8sG7xg144Bu9JdQFIliePpaqFbnTQcGtGtB9TKpbcg.DrZwa_GpNdahhRomHmhzkbl35RCjX9oIpoXq3o0zk',
+//       );
+//   },
+// );
 
 app.post('/messageToEmail', (req, res) => {
   const { from, name, text } = req.body;
@@ -71,14 +70,16 @@ app.post('/messageToEmail', (req, res) => {
     });
 });
 
-const httpsServer = https.createServer(credentials, app);
+// const httpsServer = https.createServer(credentials, app);
 
 // http server listen to redirect to https
-app.listen(8080);
-
-httpsServer.listen(portNumber, () => {
-  console.log('HTTPS Server running on port 4000');
+app.listen(portNumber, () => {
+  console.log('http server s listening on 8080', portNumber)
 });
+
+// httpsServer.listen(portNumber, () => {
+//   console.log('HTTPS Server running on port 4000');
+// });
 
 // old config for...just in case
 
