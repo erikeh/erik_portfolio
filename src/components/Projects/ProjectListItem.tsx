@@ -10,7 +10,14 @@ interface Props {
   src: string;
   description: string;
   technologies: string[];
-  link: string;
+  link: string
+
+
+
+
+
+
+  ;
   demo?: string;
 }
 
@@ -68,10 +75,8 @@ const ProjectDescription = styled.p<StyledProps>`
   transition: margin 0.3s ease-out;
   ${screen.medium<StyledProps>`
     margin 0;
+    margin-bottom: 18px;
     order: 2;
-    ${(props) => props.isHovering && 'margin 0;'}
-        // ? 'margin-bottom: 0%; margin-right: 0%;'
-        // : 'margin-bottom: -25%;'}
   `}
 `;
 
@@ -82,7 +87,8 @@ const Technologies = styled.ul`
   height: 50px;
   ${screen.medium`
     order: 3;
-    margin 2% 0;
+    margin 0;
+    margin-bottom: 18px;
   `}
 `;
 
@@ -140,17 +146,6 @@ function ProjectListItem({
     setIsHovering(false);
   };
 
-  const enterCallback = () => {
-    if (isMobile) {
-      playVideo();
-    }
-  };
-
-  const leaveCallback = () => {
-    if (isMobile) {
-      pauseVideo();
-    }
-  };
 
   useEffect(() => {
     if (!scrollMagicScene) return;
@@ -158,7 +153,9 @@ function ProjectListItem({
     if (isMobile) {
       scrollMagicScene.addTo(controller);
     } else {
+      // resize back to desktop
       scrollMagicScene.remove();
+      pauseVideo();
     }
   }, [isMobile, scrollMagicScene]);
 
@@ -194,7 +191,7 @@ function ProjectListItem({
         </ProjectDescription>
         <Technologies>
           {technologies.map((technology, idx) => (
-            <li key={idx}>&#8226;{technology}</li>
+            <li key={idx} style={{ padding: '4px 2px' }}>&#8226;{technology}</li>
           ))}
         </Technologies>
       </ProjectDetailsContainer>
