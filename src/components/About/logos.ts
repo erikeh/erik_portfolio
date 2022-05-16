@@ -12,6 +12,7 @@ import mongoDBLogo from '../../assets/img/logos/mongodb.svg';
 import postgresLogo from '../../assets/img/logos/postgresql.svg';
 import sassLogo from '../../assets/img/logos/sass.svg';
 import expressLogo from '../../assets/img/logos/express.svg';
+import rubyOnRailsLogo from '../../assets/img/logos/ruby_on_rails.svg';
 
 const logos = {
   javascriptLogo: {
@@ -38,6 +39,11 @@ const logos = {
     src: reduxLogo,
     alt: 'Redux Logo',
     link: 'https://redux.js.org/',
+  },
+  rubyOnRailsLogo: {
+    src: rubyOnRailsLogo,
+    alt: 'Ruby Logo',
+    link: 'https://rubyonrails.org/',
   },
   expressLogo: {
     src: expressLogo,

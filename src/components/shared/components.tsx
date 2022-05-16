@@ -9,7 +9,7 @@ import {
 } from './styles';
 
 interface SubHeaderProps {
-  text: string;
+  name: string;
   color?: string;
   fontWeight?: number;
   textDecoration?: string;
@@ -18,7 +18,7 @@ interface SubHeaderProps {
 type SectionHeaderProps = SubHeaderProps;
 
 export const SectionHeader = ({
-  text,
+  name,
   color,
   fontWeight,
   textDecoration,
@@ -28,7 +28,7 @@ export const SectionHeader = ({
       <Scene classToggle="show" triggerHook={0.8} reverse={false}>
         <SubHeaderContainer>
           <SectionHeaderText color={color} fontWeight={fontWeight}>
-            {text}
+            {name}
           </SectionHeaderText>
           <SubHeaderDecoration color={color}>
             {textDecoration}
@@ -40,7 +40,7 @@ export const SectionHeader = ({
 };
 
 export const SubHeader = ({
-  text,
+  name,
   color,
   fontWeight,
   textDecoration,
@@ -50,7 +50,7 @@ export const SubHeader = ({
       <Scene classToggle="show" triggerHook={0.8} reverse={false}>
         <SubHeaderContainer>
           <SubHeaderText color={color} fontWeight={fontWeight}>
-            {text}
+            {name}
           </SubHeaderText>
           <SubHeaderDecoration color={color}>
             {textDecoration}

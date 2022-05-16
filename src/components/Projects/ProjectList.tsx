@@ -11,15 +11,15 @@ const ProjectListItemWrapper = styled.div`
   justify-content: flex-start;
   flex: 0 1 auto;
   margin-top: 50px;
-  height: 500px;
   transform: translateY(25px);
   -webkit-transition: 0.7s;
   -moz-transition: 0.7s;
   -o-transition: 0.7s;
   transition: 0.7s;
-  ${screen.medium`
+  margin-bottom: 2.5rem;
+  /* ${screen.medium`
     margin-bottom: 130px;
-  `}
+  `} */
   &.show {
     opacity: 1;
     transform: translateY(0);
@@ -34,7 +34,7 @@ function ProjectList(): ReactElement {
           <ProjectListItemWrapper>
             <ProjectListItem
               key={idx}
-              text={project.name}
+              name={project.name}
               description={project.description}
               technologies={project.technologies}
               src={project.src}

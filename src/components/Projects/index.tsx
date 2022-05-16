@@ -9,11 +9,7 @@ const ProjectsContainer = styled.div`
   flex-flow: row nowrap;
   justify-content: center;
   width: 100%;
-  height: 1500px;
-  margin-bottom: 200px;
-  ${screen.medium`
-    height: 2200px;
-  `}
+  margin-bottom: 3rem;
 `;
 
 const SubHeaderContentAlignmentContainer = styled.div`
@@ -36,7 +32,7 @@ function Projects({ projectsRef }: ProjectsProps): ReactElement {
   return (
     <ProjectsContainer ref={projectsRef}>
       <SubHeaderContentAlignmentContainer>
-        <SectionHeader text={'PROJECTS'} fontWeight={200} />
+        <SectionHeader name={'PROJECTS'} fontWeight={200} />
         <ProjectList />
       </SubHeaderContentAlignmentContainer>
     </ProjectsContainer>

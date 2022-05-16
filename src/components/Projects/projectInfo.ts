@@ -33,10 +33,10 @@ const projects: Project[] = [
 
   {
     name: 'Aetos Website',
-    description: `Landing page of Aetos Imaging. Built purely with HTML/ERB and CSS, following designs to pixel perfect precision. Used ruby on rails as a framework to fetch data from Prismic as headless CMS, and cloudinary to fetch and manage optimized images. There was a focus on building the site to be as lightweight as possible for optimal SEO, so no css libraries or javascript was used whatsoever.`,
+    description: `Landing page of Aetos Imaging. Built purely with HTML/ERB and CSS, following designs to pixel perfect precision. Used ruby on rails as a framework to fetch data from Prismic as headless CMS, and cloudinary to fetch and manage optimized images. In order to make the website as light weight as possible, no css frameworks were used, and the site uses very little lazily-loaded javascript.`,
     technologies: ['Ruby on rails', 'HTML', 'CSS', 'Cloudinary', 'Prismic'],
     src: aetosWebsiteDemo,
-    link: 'https://github.com/erikeh/group-foodie',
+    link: 'https://aetosimaging.com',
   },
   {
     name: 'Group Foodie',
@@ -52,24 +52,12 @@ const projects: Project[] = [
     src: groupFoodieDemo,
     link: 'https://github.com/erikeh/group-foodie',
   },
-
   {
-    name: 'Project Atelier',
-    description: `A full-stack product page with manual css implemntation of most UI elements. Eventually we extracted 10 million+ lines of data from csv files and loaded them into a PostgreSQL database after sanitzing and tranforming data, created an API and deplyed each module of the app as a containerized microservice in a AWS ECS cluster, load balancing with ALB across 2 tasks in 2 instances.`,
-    technologies: [
-      'React/Redux',
-      'Node.js',
-      'Fastify',
-      'TypeScript',
-      'PostgreSQL',
-      'Swiper',
-      'Docker',
-      'AWS',
-      'ECS',
-    ],
-    src: fecDemo,
-    link: 'https://github.com/erikeh/atelier-full-stack-product-page',
-    // link: FECDemo,
+    name: 'This Portfolio Site!',
+    description: `This is a simple static site built with React and plain old CSS! While simple, there are some cool orchestrated animations happening throughout the site! Did you know the bold red letters that spell out my name in the intro message have hover effects?`,
+    technologies: ['Ruby on rails', 'HTML', 'CSS', 'Cloudinary', 'Prismic'],
+    src: null,
+    link: '',
   },
 ];
 

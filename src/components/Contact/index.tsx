@@ -18,6 +18,7 @@ interface InputData {
 
 function Contact({ contactRef }: ContactProps): ReactElement {
   const [confirm, setConfirm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
@@ -28,6 +29,7 @@ function Contact({ contactRef }: ContactProps): ReactElement {
 
   const handleSubmitForm = async (inputData: InputData) => {
     try {
+      setIsSubmitting(true);
       const { Name, Email, Message } = inputData;
       await axios.post('/messageToEmail', {
         from: Email,
@@ -38,6 +40,8 @@ function Contact({ contactRef }: ContactProps): ReactElement {
       showSubmitConfirmationText();
     } catch (err) {
       throw new Error(err);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -51,7 +55,7 @@ function Contact({ contactRef }: ContactProps): ReactElement {
     <s.AlignCenterWrapper ref={contactRef}>
       <Scene classToggle="show" triggerHook={0.8} reverse={false}>
         <s.ContactContainerCenter>
-          <SectionHeader text={'CONTACT'} color={'#f1faee'} fontWeight={200} />
+          <SectionHeader name={'CONTACT'} color={'#f1faee'} fontWeight={200} />
           <s.CTAMessage>
             Have any questions, or would be interested in my services?
           </s.CTAMessage>
@@ -118,10 +122,11 @@ function Contact({ contactRef }: ContactProps): ReactElement {
             </AnimatePresence>
             <s.ContactButton
               type="submit"
-              value="Submit"
+              value={isSubmitting ? 'Submitting...' : 'Submit'}
               transition={{
                 duration: 0.15,
               }}
+              disabled={isSubmitting}
               whileHover={{
                 backgroundColor: '#0c8ea9',
                 transition: {

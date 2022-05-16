@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import screen from '../../media/mediaQueries';
 
 interface TextProps {
   color: string;
@@ -41,6 +42,9 @@ export const AlignFlexStart = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  ${screen.medium`
+    justify-content: center;
+  `}
 `;
 
 export const SubHeaderContainer = styled.div`

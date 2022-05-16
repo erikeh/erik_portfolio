@@ -6,18 +6,11 @@ import { useMediaQuery } from 'react-responsive';
 import ScrollMagic from 'scrollmagic';
 
 interface Props {
-  text: string;
+  name: string;
   src: string;
   description: string;
   technologies: string[];
-  link: string
-
-
-
-
-
-
-  ;
+  link: string;
   demo?: string;
 }
 
@@ -121,7 +114,7 @@ const DemoLink = styled.a`
 `;
 
 function ProjectListItem({
-  text,
+  name,
   description,
   technologies,
   src,
@@ -145,7 +138,6 @@ function ProjectListItem({
     videoRef.current?.pause();
     setIsHovering(false);
   };
-
 
   useEffect(() => {
     if (!scrollMagicScene) return;
@@ -172,7 +164,7 @@ function ProjectListItem({
   return (
     <ProjectListItemContainer>
       <ProjectDetailsContainer>
-        <OrderedSubHeader text={text} fontWeight={600} />
+        <OrderedSubHeader name={name} fontWeight={600} />
         <ProjectDescription isHovering={isHovering}>
           {description}
           {demo && (
@@ -191,24 +183,34 @@ function ProjectListItem({
         </ProjectDescription>
         <Technologies>
           {technologies.map((technology, idx) => (
-            <li key={idx} style={{ padding: '4px 2px' }}>&#8226;{technology}</li>
+            <li key={idx} style={{ padding: '4px 2px' }}>
+              &#8226;{technology}
+            </li>
           ))}
         </Technologies>
       </ProjectDetailsContainer>
 
-      <ProjectPreviewWrapper
-        isHovering={isHovering}
-        onMouseEnter={playVideo}
-        onMouseLeave={pauseVideo}
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Github Page to project"
-      >
-        <ProjectPreview ref={videoRef} loop muted playsInline preload={'auto'}>
-          <source src={src} type="video/mp4" />
-        </ProjectPreview>
-      </ProjectPreviewWrapper>
+      {src && (
+        <ProjectPreviewWrapper
+          isHovering={isHovering}
+          onMouseEnter={playVideo}
+          onMouseLeave={pauseVideo}
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Github Page to project"
+        >
+          <ProjectPreview
+            ref={videoRef}
+            loop
+            muted
+            playsInline
+            preload={'auto'}
+          >
+            <source src={src} type="video/mp4" />
+          </ProjectPreview>
+        </ProjectPreviewWrapper>
+      )}
     </ProjectListItemContainer>
   );
 }
